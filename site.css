@@ -1,0 +1,5 @@
+/* Page Reader's web page: the few rules it adds to the Options design. */
+.nav{flex-basis:226px}
+.nav h1{white-space:normal;text-wrap:balance}
+.prose .card h3{font-size:16px;font-weight:600;margin:24px 0 10px;padding-top:22px;border-top:1px solid var(--line);scroll-margin-top:24px}
+.prose .card .section-heading{margin-bottom:6px}
