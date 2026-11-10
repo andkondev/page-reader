@@ -12,6 +12,7 @@ svg{flex:none}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:36px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:600;font-size:16px}
 .brand svg{width:26px;height:26px;color:var(--accent)}
+.brand .play{fill:var(--ground);stroke:var(--ground)}
 
 .layout{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .nav{flex:1 1 180px;max-width:230px;display:flex;flex-direction:column;gap:2px;position:sticky;top:24px}
