@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Privacy policy for Page Reader, a browser extension that reads web pages and PDFs aloud."><link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="icons/icon-48.png"><link rel="icon" type="image/png" sizes="128x128" href="icons/icon-128.png"><title>Page Reader — Privacy policy</title><link rel="stylesheet" href="settings.css"><link rel="stylesheet" href="free-voices.css"><link rel="stylesheet" href="site.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Page Reader is a free browser extension that reads web pages and PDFs aloud in natural voices. Video tour, screenshots and privacy policy."><link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="icons/icon-48.png"><link rel="icon" type="image/png" sizes="128x128" href="icons/icon-128.png"><title>Page Reader — Read any page aloud</title><link rel="stylesheet" href="settings.css"><link rel="stylesheet" href="free-voices.css"><link rel="stylesheet" href="site.css"></head>
 <!-- Page Reader's web page at andkon.dev/page-reader/. In the design of the extension's Options page
      (settings.css and free-voices.css are copies of the extension's; site.css holds this page's few additions).
-     Each topic is one card with its own link on the left; for now there is only Privacy. -->
+     Each topic is one card with its own link on the left: the video tour, screenshots, Web Store links,
+     the warranty disclaimer and the privacy policy. -->
 <body><div class="page">
 <header class="top">
  <span class="brand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 1.5h9l4.5 4.5v15a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5V3A1.5 1.5 0 0 1 6 1.5z" fill="currentColor"/><path d="M15 1.5V6h4.5z" fill="#fff" fill-opacity=".45"/><path class="play" d="M9 9v9l7.5-4.5z" stroke-width=".6" stroke-linejoin="round"/></svg><span>Page Reader</span></span>
@@ -10,9 +11,39 @@
 <div class="layout">
 <nav class="nav" aria-label="Page sections">
  <h1>Read any page aloud.</h1>
- <a href="#privacy" aria-current="true">Privacy</a>
+ <a href="#video">Video tutorial</a>
+ <a href="#screenshots">Screenshots</a>
+ <a href="#web-store">Web Store</a>
+ <a href="#no-warranty">No warranty</a>
+ <a href="#privacy">Privacy</a>
 </nav>
 <main class="prose">
+<section id="video" class="card" aria-labelledby="videoHeading">
+ <div class="section-heading"><h2 id="videoHeading">Video tutorial</h2></div>
+ <p>A three-minute tour: pinning Page Reader, playing an article, voices, the mini player, the reading view, PDFs and the playlist.</p>
+ <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/aHS7sTulYb8" title="Page Reader video tutorial" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+</section>
+<section id="screenshots" class="card" aria-labelledby="shotsHeading">
+ <div class="section-heading"><h2 id="shotsHeading">Screenshots</h2></div>
+ <div class="gallery" aria-roledescription="carousel" aria-label="Screenshots">
+  <div class="slides">
+   <img class="on" src="screenshots/1-play-and-mini-player.png" width="1280" height="800" alt="An article with Page Reader’s player open: click the icon, then press Play. Starring the site adds a small mini player to its pages.">
+   <img src="screenshots/2-quick-settings.png" width="1280" height="800" loading="lazy" alt="Quick Settings in the player: speed, voice, playlist, mini player and Options.">
+   <img src="screenshots/3-pdfs.png" width="1280" height="800" loading="lazy" alt="A PDF in Page Reader’s viewer, with the paragraph being read highlighted.">
+   <img src="screenshots/4-voices.png" width="1280" height="800" loading="lazy" alt="The voice list in Options: free voices that sound natural, each with a preview.">
+   <img src="screenshots/5-playlist.png" width="1280" height="800" loading="lazy" alt="Playlist mode: three articles lined up in the player, playing one after another.">
+  </div>
+  <div class="dots"></div>
+ </div>
+</section>
+<section id="web-store" class="card" aria-labelledby="storeHeading">
+ <div class="section-heading"><h2 id="storeHeading">Web Store</h2></div>
+ <p>Page Reader is not in the Chrome Web Store yet. Its link will appear here once it is.</p>
+</section>
+<section id="no-warranty" class="card" aria-labelledby="warrantyHeading">
+ <div class="section-heading"><h2 id="warrantyHeading">No warranty</h2></div>
+ <p>The extension is provided “as is” and “as available,” without warranties of any kind, either express or implied. To the fullest extent permitted by law, we disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, reliability, availability, and uninterrupted or error-free operation. Your use of the extension is at your own risk.</p>
+</section>
 <section id="privacy" class="card" aria-labelledby="privacyHeading">
  <div class="section-heading"><h2 id="privacyHeading">Privacy</h2></div>
  <p class="lead">Updated 11 November 2026</p>
@@ -39,4 +70,15 @@
  <p>We will update this page and its date when these practices change. Questions: <a href="mailto:andkon@andkon.com">andkon@andkon.com</a>.</p>
 </section>
 </main></div></div>
+<script>
+// Screenshots: one at a time, moving on every 5 seconds; a dot under them for each. It stops while the pointer or
+// keyboard is on it, and does not move on its own for people who ask for reduced motion.
+{const g=document.querySelector('.gallery'),shots=[...g.querySelectorAll('.slides img')],dots=g.querySelector('.dots');let at=0,timer=null;
+ const show=i=>{at=(i+shots.length)%shots.length;shots.forEach((s,k)=>s.classList.toggle('on',k===at));[...dots.children].forEach((d,k)=>d.setAttribute('aria-current',String(k===at)));};
+ shots.forEach((s,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Screenshot '+(k+1)+' of '+shots.length);b.onclick=()=>show(k);dots.append(b);});
+ g.querySelector('.slides').onclick=()=>show(at+1);
+ const still=matchMedia('(prefers-reduced-motion: reduce)').matches,start=()=>{if(!still&&!timer)timer=setInterval(()=>show(at+1),5000);},stop=()=>{clearInterval(timer);timer=null;};
+ g.addEventListener('mouseenter',stop);g.addEventListener('mouseleave',start);g.addEventListener('focusin',stop);g.addEventListener('focusout',start);
+ show(0);start();}
+</script>
 </body></html>

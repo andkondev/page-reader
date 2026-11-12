@@ -3,3 +3,16 @@
 .nav h1{white-space:normal;text-wrap:balance}
 .prose .card h3{font-size:16px;font-weight:600;margin:24px 0 10px;padding-top:22px;border-top:1px solid var(--line);scroll-margin-top:24px}
 .prose .card .section-heading{margin-bottom:6px}
+/* The video tour, 16:9 and full card width. */
+.video{aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{display:block;width:100%;height:100%;border:0}
+/* Screenshots: stacked, one shown at a time, with a dot for each underneath. */
+.slides{position:relative;aspect-ratio:1280/800;border-radius:12px;overflow:hidden;border:1px solid var(--line);cursor:pointer}
+.slides img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s}
+.slides img.on{opacity:1}
+.dots{display:flex;justify-content:center;gap:2px;margin-top:8px}
+.dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots button[aria-current="true"]::before{background:var(--accent)}
+.dots button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:50%}
+@media (prefers-reduced-motion:reduce){.slides img{transition:none}}
