@@ -15,4 +15,13 @@
 .dots button::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
 .dots button[aria-current="true"]::before{background:var(--accent)}
 .dots button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:50%}
-@media (prefers-reduced-motion:reduce){.slides img{transition:none}}
+/* Arrows at each side, shown when the pointer is over the screenshots (always on touch screens). */
+.arrow{position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;border:0;border-radius:50%;padding:0;display:grid;place-items:center;cursor:pointer;
+ background:rgba(255,255,255,.82);color:var(--ink);box-shadow:0 1px 6px rgba(0,0,0,.18);opacity:0;transition:opacity .2s}
+.arrow.prev{left:12px}.arrow.next{right:12px}
+.arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.slides:hover .arrow,.arrow:focus-visible{opacity:1}
+.arrow:hover{background:#fff}
+.arrow:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (hover:none){.arrow{opacity:.85}}
+@media (prefers-reduced-motion:reduce){.slides img,.arrow{transition:none}}

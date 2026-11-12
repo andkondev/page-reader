@@ -32,6 +32,8 @@
    <img src="screenshots/3-pdfs.png" width="1280" height="800" loading="lazy" alt="A PDF in Page Reader’s viewer, with the paragraph being read highlighted.">
    <img src="screenshots/4-voices.png" width="1280" height="800" loading="lazy" alt="The voice list in Options: free voices that sound natural, each with a preview.">
    <img src="screenshots/5-playlist.png" width="1280" height="800" loading="lazy" alt="Playlist mode: three articles lined up in the player, playing one after another.">
+   <button type="button" class="arrow prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+   <button type="button" class="arrow next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
   <div class="dots"></div>
  </div>
@@ -76,7 +78,9 @@
 {const g=document.querySelector('.gallery'),shots=[...g.querySelectorAll('.slides img')],dots=g.querySelector('.dots');let at=0,timer=null;
  const show=i=>{at=(i+shots.length)%shots.length;shots.forEach((s,k)=>s.classList.toggle('on',k===at));[...dots.children].forEach((d,k)=>d.setAttribute('aria-current',String(k===at)));};
  shots.forEach((s,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Screenshot '+(k+1)+' of '+shots.length);b.onclick=()=>show(k);dots.append(b);});
- g.querySelector('.slides').onclick=()=>show(at+1);
+ // A click on the left half goes back, on the right half forward; the arrows do the same.
+ g.querySelector('.slides').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();show(at+(e.clientX<r.left+r.width/2?-1:1));};
+ g.querySelector('.arrow.prev').onclick=e=>{e.stopPropagation();show(at-1);};g.querySelector('.arrow.next').onclick=e=>{e.stopPropagation();show(at+1);};
  const still=matchMedia('(prefers-reduced-motion: reduce)').matches,start=()=>{if(!still&&!timer)timer=setInterval(()=>show(at+1),5000);},stop=()=>{clearInterval(timer);timer=null;};
  g.addEventListener('mouseenter',stop);g.addEventListener('mouseleave',start);g.addEventListener('focusin',stop);g.addEventListener('focusout',start);
  show(0);start();}
